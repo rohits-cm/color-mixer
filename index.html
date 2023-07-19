@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Mixing</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="colors-container">
+    <div class="color-button red" onclick="toggleFill('red')">
+      <div class="color-bucket red-bucket"></div>
+    </div>
+    <div class="color-button green" onclick="toggleFill('green')">
+      <div class="color-bucket green-bucket"></div>
+    </div>
+    <div class="color-button blue" onclick="toggleFill('blue')">
+      <div class="color-bucket blue-bucket"></div>
+    </div>
+  </div>
+
+  <div class="colors-bar-container">
+    <div class="color-bar red-bar"></div>
+    <div class="color-bar green-bar"></div>
+    <div class="color-bar blue-bar"></div>
+  </div>
+
+  <div class="bucket">
+    <div class="bucket-color"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
