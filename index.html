@@ -11,12 +11,15 @@
 <body>
   <div class="colors-container">
     <div class="color-button red" onclick="toggleFill('red')">
+      <div class="color-counter red-counter">100%</div>
       <div class="color-bucket red-bucket"></div>
     </div>
     <div class="color-button green" onclick="toggleFill('green')">
+      <div class="color-counter green-counter">100%</div>
       <div class="color-bucket green-bucket"></div>
     </div>
     <div class="color-button blue" onclick="toggleFill('blue')">
+      <div class="color-counter blue-counter">100%</div>
       <div class="color-bucket blue-bucket"></div>
     </div>
   </div>
@@ -28,7 +31,7 @@
   </div>
 
   <div class="bucket">
-    <div class="bucket-color"></div>
+    <div class="bucket-color" id="ocean"></div>
   </div>
 
   <script src="script.js"></script>
