@@ -5,7 +5,11 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  background-color:gray;
+  background-color: gray;
+}
+
+.color-counter {
+  z-index: 99;
 }
 
 .bucket {
@@ -14,15 +18,32 @@ body {
   border: 2px solid black;
   background-color: rgb(139, 139, 139);
   position: relative;
+  border-radius: 0 0 40px 40px;
+  overflow: hidden;
 }
-.bucket-color{
+
+.bucket-color {
   position: absolute;
-  left: 0;
-  bottom: 0;
+  left: -50%;
+  bottom: -1%;
   z-index: 99;
-  height: 0%;
-  width: 100%;
+  width: 200%;
 }
+
+/* Add animation class */
+.bucket-color.swell-animation {
+  animation: swell 1.5s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+}
+
+@keyframes swell {
+  0%, 100% {
+    transform: rotate(1deg);
+  }
+  50% {
+    transform: rotate(-1deg);
+  }
+}
+
 .colors-container {
   display: flex;
   align-items: center;
@@ -36,7 +57,11 @@ body {
   cursor: pointer;
   margin: 0 11px;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .color-bucket {
   position: absolute;
   left: 0;
@@ -70,7 +95,7 @@ body {
   height: 300px;
   opacity: 0;
   z-index: 90;
-  margin: 0 33px -200px;
+  margin: 0 33px -198px;
 }
 
 .red-bar {
