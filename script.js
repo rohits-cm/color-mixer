@@ -7,11 +7,7 @@ let colorMix = {
 };
 
 let isBucketEmpty = true;
-let isFirstClick = {
-  red: true,
-  green: true,
-  blue: true,
-};
+let counter = 100;
 
 // Function to toggle fill the bucket with the selected color
 const toggleFill = (color) => {
@@ -25,16 +21,23 @@ const toggleFill = (color) => {
   }
 };
 
+// Function to add the CSS animation class to the bucket
+const startAnimation = () => {
+  const bucketColor = document.querySelector('.bucket-color');
+  bucketColor.classList.add('swell-animation');
+};
+
+// Function to remove the CSS animation class from the bucket
+const stopAnimation = () => {
+  const bucketColor = document.querySelector('.bucket-color');
+  bucketColor.classList.remove('swell-animation');
+};
+
 // Function to start filling the bucket with the selected color
 const startFill = (color) => {
   const colorBar = document.querySelector(`.${color}-bar`);
   colorBar.style.opacity = '1';
-
-  // Check if it's the first click on the color, update bucket color if true
-  // if (isFirstClick[color]) {
-  //   isFirstClick[color] = false;
-  //   updateBucketColor();
-  // }
+  startAnimation(); // Add animation class when the bucket starts filling
 
   // Interval function to gradually fill the bucket with the selected color
   intervalId = setInterval(() => {
@@ -44,16 +47,19 @@ const startFill = (color) => {
       updateBucketHeight();
       updateColorBucketHeight(color); // Update the color bucket height as the mixing bucket fills
       hideFilledColorBars(color);
+      counter = 100 - Math.floor((colorMix[color] / 255) * 100);
+      updateColorBucketCounter(color);
     } else {
-      clearInterval(intervalId);
+      stopFill();
     }
-  }, 30);
+  }, 10); // Changed interval timing to 10ms for smoother filling
 };
 
 // Function to stop the bucket from filling
 const stopFill = () => {
   clearInterval(intervalId);
   intervalId = null;
+  stopAnimation(); // Remove animation class when the bucket stops filling
 };
 
 // Function to update the main bucket color based on the colorMix values
@@ -98,21 +104,15 @@ const isBucketFilledWith = (color) => {
   );
 };
 
-// Function to reset the main bucket height to 0%
-const resetBucketHeight = () => {
-  const bucket = document.querySelector('.bucket-color');
-  bucket.style.height = '0';
-};
-
-// Function to reset the color bucket height to 50% for all colors
-const resetColorBucketHeight = () => {
-  const colorBuckets = document.querySelectorAll('.color-bucket');
-  colorBuckets.forEach((bucket) => (bucket.style.height = '50%'));
-};
-
 // Function to update the color bucket height as the mixing bucket fills
 const updateColorBucketHeight = (color) => {
   const colorBucket = document.querySelector(`.${color}-bucket`);
   const colorPercentage = 100 - ((colorMix[color] / 255) * 100);
   colorBucket.style.height = `${colorPercentage}%`;
+};
+
+// Function to update the color bucket counter as the mixing bucket fills
+const updateColorBucketCounter = (color) => {
+  const counterElement = document.querySelector(`.${color}-counter`);
+  counterElement.textContent = `${counter}%`;
 };
